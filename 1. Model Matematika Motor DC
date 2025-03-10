@@ -1,3 +1,7 @@
+Nama: Ruasa Azizan Zihni
+NIM: 235150301111046
+
+# 1. Model Matematika Motor DC (Persamaan Listrik dan Mekanik)
 import sympy as sp
 
 # Definisi simbol
@@ -13,7 +17,6 @@ Ke = sp.symbols('Ke')  # Konstanta GGL
 i = sp.Function('i')(t)  # Arus
 omega = sp.Function('omega')(t)  # Kecepatan sudut
 
-# 1. Model Matematika Motor DC (Persamaan Listrik dan Mekanik)
 # Persamaan listrik: V = R*i + L*di/dt + Ke*omega
 eq_electric = sp.Eq(V, R*i + L*sp.diff(i, t) + Ke*omega)
 
