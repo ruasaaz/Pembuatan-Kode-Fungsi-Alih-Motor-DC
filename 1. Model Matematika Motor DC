@@ -1,12 +1,10 @@
 Nama: Ruasa Azizan Zihni
 NIM: 235150301111046
 
-# 1. Model Matematika Motor DC (Persamaan Listrik dan Mekanik)
 import sympy as sp
 
 # Definisi simbol
 t = sp.symbols('t')  # Waktu
-s = sp.symbols('s')  # Variabel Laplace
 V = sp.symbols('V')  # Tegangan input
 R = sp.symbols('R')  # Resistansi
 L = sp.symbols('L')  # Induktansi
@@ -27,6 +25,3 @@ print("Persamaan Listrik:")
 sp.pprint(eq_electric)
 print("\nPersamaan Mekanik:")
 sp.pprint(eq_mechanical)
-
-
-
