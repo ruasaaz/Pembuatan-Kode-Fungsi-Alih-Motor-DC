@@ -6,7 +6,6 @@ NIM: 235150301111046
 import sympy as sp
 
 # Definisi simbol
-t = sp.symbols('t')  # Waktu
 s = sp.symbols('s')  # Variabel Laplace
 V = sp.symbols('V')  # Tegangan input
 R = sp.symbols('R')  # Resistansi
@@ -15,15 +14,17 @@ J = sp.symbols('J')  # Momen inersia
 b = sp.symbols('b')  # Koefisien gesekan viscous
 Kt = sp.symbols('Kt')  # Konstanta torsi
 Ke = sp.symbols('Ke')  # Konstanta GGL
-i = sp.Function('i')(t)  # Arus
-omega = sp.Function('omega')(t)  # Kecepatan sudut
+I = sp.Function('I')(s)  # Arus dalam domain Laplace
+Omega = sp.Function('Omega')(s)  # Kecepatan sudut dalam domain Laplace
 
-# Asumsikan kondisi awal nol
-# Dari persamaan listrik Laplace: V(s) = (R + L*s)*I(s) + Ke*Omega(s)
-# Dari persamaan mekanik Laplace: Kt*I(s) = (J*s + b)*Omega(s)
+# Persamaan listrik dalam domain Laplace: V(s) = (R + L*s)*I(s) + Ke*Omega(s)
+eq_electric_laplace = sp.Eq(V, (R + L*s)*I + Ke*Omega)
+
+# Persamaan mekanik dalam domain Laplace: Kt*I(s) = (J*s + b)*Omega(s)
+eq_mechanical_laplace = sp.Eq(Kt*I, (J*s + b)*Omega)
 
 # Selesaikan untuk I(s) dari persamaan mekanik Laplace
-I_s = sp.solve(eq_mechanical_laplace, I(s))[0]
+I_s = sp.solve(eq_mechanical_laplace, I)[0]
 
 # Substitusi I(s) ke persamaan listrik Laplace
 eq_transfer_function = sp.Eq(V, (R + L*s)*I_s + Ke*Omega)
@@ -31,5 +32,5 @@ eq_transfer_function = sp.Eq(V, (R + L*s)*I_s + Ke*Omega)
 # Selesaikan untuk Omega(s)/V(s)
 transfer_function = sp.solve(eq_transfer_function, Omega)[0] / V
 
-print("\nFungsi Alih Omega(s)/V(s):")
+print("Fungsi Alih Omega(s)/V(s):")
 sp.pprint(transfer_function)
