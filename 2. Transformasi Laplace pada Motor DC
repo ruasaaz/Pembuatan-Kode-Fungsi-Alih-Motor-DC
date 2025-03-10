@@ -1,0 +1,27 @@
+# 2. Transformasi Laplace pada Motor DC
+
+import sympy as sp
+
+# Definisi simbol
+t = sp.symbols('t')  # Waktu
+s = sp.symbols('s')  # Variabel Laplace
+V = sp.symbols('V')  # Tegangan input
+R = sp.symbols('R')  # Resistansi
+L = sp.symbols('L')  # Induktansi
+J = sp.symbols('J')  # Momen inersia
+b = sp.symbols('b')  # Koefisien gesekan viscous
+Kt = sp.symbols('Kt')  # Konstanta torsi
+Ke = sp.symbols('Ke')  # Konstanta GGL
+i = sp.Function('i')(t)  # Arus
+omega = sp.Function('omega')(t)  # Kecepatan sudut
+
+# Transformasi Laplace dari persamaan listrik
+I = sp.Function('I')(s)
+Omega = sp.Function('Omega')(s)
+eq_electric_laplace = sp.laplace_transform(eq_electric.lhs - eq_electric.rhs, t, s, noconds=True)
+eq_mechanical_laplace = sp.laplace_transform(eq_mechanical.lhs - eq_mechanical.rhs, t, s, noconds=True)
+
+print("\nTransformasi Laplace Persamaan Listrik:")
+sp.pprint(sp.Eq(eq_electric_laplace, 0))
+print("\nTransformasi Laplace Persamaan Mekanik:")
+sp.pprint(sp.Eq(eq_mechanical_laplace, 0))
