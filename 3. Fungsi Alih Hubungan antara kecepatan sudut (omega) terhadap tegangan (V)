@@ -1,3 +1,6 @@
+Nama: Ruasa Azizan Zihni
+NIM: 235150301111046
+
 # 3. Fungsi Alih Hubungan antara kecepatan sudut (omega) terhadap tegangan (V)
 
 import sympy as sp
