@@ -1,5 +1,5 @@
-Nama: Ruasa Azizan Zihni
-NIM: 235150301111046
+# Nama: Ruasa Azizan Zihni
+# NIM: 235150301111046
 
 1. **Model Matematika Motor DC (Persamaan Listrik dan Mekanik)**
 **Penjelasan:**
