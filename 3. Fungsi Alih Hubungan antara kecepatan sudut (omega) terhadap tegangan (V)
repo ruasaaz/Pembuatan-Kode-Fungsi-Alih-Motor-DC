@@ -1,0 +1,32 @@
+# 3. Fungsi Alih Hubungan antara kecepatan sudut (omega) terhadap tegangan (V)
+
+import sympy as sp
+
+# Definisi simbol
+t = sp.symbols('t')  # Waktu
+s = sp.symbols('s')  # Variabel Laplace
+V = sp.symbols('V')  # Tegangan input
+R = sp.symbols('R')  # Resistansi
+L = sp.symbols('L')  # Induktansi
+J = sp.symbols('J')  # Momen inersia
+b = sp.symbols('b')  # Koefisien gesekan viscous
+Kt = sp.symbols('Kt')  # Konstanta torsi
+Ke = sp.symbols('Ke')  # Konstanta GGL
+i = sp.Function('i')(t)  # Arus
+omega = sp.Function('omega')(t)  # Kecepatan sudut
+
+# Asumsikan kondisi awal nol
+# Dari persamaan listrik Laplace: V(s) = (R + L*s)*I(s) + Ke*Omega(s)
+# Dari persamaan mekanik Laplace: Kt*I(s) = (J*s + b)*Omega(s)
+
+# Selesaikan untuk I(s) dari persamaan mekanik Laplace
+I_s = sp.solve(eq_mechanical_laplace, I(s))[0]
+
+# Substitusi I(s) ke persamaan listrik Laplace
+eq_transfer_function = sp.Eq(V, (R + L*s)*I_s + Ke*Omega)
+
+# Selesaikan untuk Omega(s)/V(s)
+transfer_function = sp.solve(eq_transfer_function, Omega)[0] / V
+
+print("\nFungsi Alih Omega(s)/V(s):")
+sp.pprint(transfer_function)
