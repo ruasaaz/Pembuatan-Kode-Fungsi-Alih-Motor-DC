@@ -18,13 +18,17 @@ Ke = sp.symbols('Ke')  # Konstanta GGL
 i = sp.Function('i')(t)  # Arus
 omega = sp.Function('omega')(t)  # Kecepatan sudut
 
+# Persamaan listrik: V = R*i + L*di/dt + Ke*omega
+eq_electric = sp.Eq(V, R*i + L*sp.diff(i, t) + Ke*omega)
+
+# Persamaan mekanik: Kt*i = J*d(omega)/dt + b*omega
+eq_mechanical = sp.Eq(Kt*i, J*sp.diff(omega, t) + b*omega)
+
 # Transformasi Laplace dari persamaan listrik
-I = sp.Function('I')(s)
-Omega = sp.Function('Omega')(s)
 eq_electric_laplace = sp.laplace_transform(eq_electric.lhs - eq_electric.rhs, t, s, noconds=True)
 eq_mechanical_laplace = sp.laplace_transform(eq_mechanical.lhs - eq_mechanical.rhs, t, s, noconds=True)
 
-print("\nTransformasi Laplace Persamaan Listrik:")
+print("Transformasi Laplace Persamaan Listrik:")
 sp.pprint(sp.Eq(eq_electric_laplace, 0))
 print("\nTransformasi Laplace Persamaan Mekanik:")
 sp.pprint(sp.Eq(eq_mechanical_laplace, 0))
